@@ -13,14 +13,14 @@ const SignUp = () => {
   const onSubmit = handleSubmit(async (data) => {
     const { email, password } = data;
     try {
-      await axios.post("/api/v1/auth/login", {
+      await axios.post("/api/v1/auth/register", {
         email,
         password,
       });
 
       alert("sign up successful");
     } catch {
-      alert("Sign up failed. Make sure password is atleast 6 characters");
+      alert("Sign up failed");
     }
   });
 
