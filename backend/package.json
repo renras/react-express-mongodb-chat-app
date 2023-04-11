@@ -16,6 +16,6 @@
     "validator": "^13.9.0"
   },
   "scripts": {
-    "start": "nodemon server.ts"
+    "start": "nodemon app.ts"
   }
 }

@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import authRouter from "./routes/auth";
 
 dotenv.config();
 
@@ -9,6 +10,8 @@ const port = process.env.PORT || 4000;
 app.get("/", (req, res) => {
   res.send("Express + TypeScript Server");
 });
+
+app.use("/", authRouter);
 
 const start = async () => {
   try {
