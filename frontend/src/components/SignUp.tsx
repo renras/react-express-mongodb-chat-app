@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 type FormData = {
   email: string;
@@ -12,8 +13,12 @@ const SignUp = () => {
   const onSubmit = handleSubmit(async (data) => {
     const { email, password } = data;
     try {
-      // todo: do sign up logic here
-      // todo: link to sign-in after successful sign up
+      await axios.post("/api/v1/auth/login", {
+        email,
+        password,
+      });
+
+      alert("sign up successful");
     } catch {
       alert("Sign up failed. Make sure password is atleast 6 characters");
     }

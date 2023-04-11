@@ -7,4 +7,9 @@ export default defineConfig({
   resolve: {
     alias: [{ find: "@", replacement: "/src" }],
   },
+  server: {
+    proxy: {
+      "/api": "http://localhost:4000/",
+    },
+  },
 });

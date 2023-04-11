@@ -7,11 +7,11 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.get("/", (req, res) => {
+app.get("/api/v1", (req, res) => {
   res.send("Express + TypeScript Server");
 });
 
-app.use("/", authRouter);
+app.use("/api/v1/auth", authRouter);
 
 const start = async () => {
   try {
