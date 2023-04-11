@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 type FormData = {
   email: string;
@@ -35,12 +36,11 @@ const SignUp = () => {
           {...register("password")}
         />
         <div className="mt-3">
-          {/* todo: refractor to use react router */}
-          {/* <Link href="/sign-in">
+          <Link to="/sign-in">
             <p>Sign in instead</p>
-          </Link> */}
+          </Link>
         </div>
-        <button className="btn btn-primary mt-5">Submit</button>
+        <button className="btn btn-primary mt-5">Sign Up</button>
       </form>
     </main>
   );

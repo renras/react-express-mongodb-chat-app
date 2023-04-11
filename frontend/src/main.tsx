@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "@/components/SignIn";
+import Home from "@/components/Home";
 import SignUp from "@/components/SignUp";
 import SignIn from "@/components/SignIn";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const router = createBrowserRouter([
   {

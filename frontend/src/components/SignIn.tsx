@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 type FormData = {
   email: string;
@@ -32,12 +33,11 @@ export default function Home() {
         <input className="form-control" type="text" {...register("password")} />
 
         <div className="mt-3">
-          {/* todo: use react router to link to sign up page */}
-          {/* <Link href="/sign-up">
+          <Link to="/sign-up">
             <p>Sign up instead</p>
-          </Link> */}
+          </Link>
         </div>
-        <button className="btn btn-primary mt-5 d-block">Submit</button>
+        <button className="btn btn-primary mt-5 d-block">Sign In</button>
       </form>
     </main>
   );
