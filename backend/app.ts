@@ -5,6 +5,7 @@ import passport from "passport";
 import User from "./models/User";
 import mongoose from "mongoose";
 import session from "express-session";
+import usersRouter from "./routes/users";
 
 dotenv.config();
 
@@ -19,12 +20,14 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(passport.session());
 passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser() as any);
 passport.deserializeUser(User.deserializeUser());
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", usersRouter);
 
 mongoose
   .connect(process.env.MONGO_URL as string)

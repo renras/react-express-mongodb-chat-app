@@ -1,4 +1,7 @@
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 type FormData = {
   message: string;
@@ -10,12 +13,39 @@ type Message = {
   sender: string;
 };
 
+type User = {
+  email: string;
+  _id: string;
+};
+
 export default function Home() {
   const { register, handleSubmit, reset } = useForm<FormData>();
   const messages: Message[] = [];
+  const navigate = useNavigate();
+  const [user, setUser] = useState<User | null>(null);
+  const [userLoading, setUserLoading] = useState(false);
+  const [userError, setUserError] = useState(false);
 
-  // todo: if not authenticated, redirect user to sign in page
   // todo: fetch chat messages
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get("/api/v1/users/me");
+        const user = response.data;
+
+        if (user) {
+          setUser(user);
+        } else {
+          navigate("/sign-in");
+        }
+      } catch (error) {
+        setUserError(true);
+      } finally {
+        setUserLoading(false);
+      }
+    })();
+  }, []);
 
   const handleLogout = async () => {
     // todo: add signout logic here
@@ -31,6 +61,11 @@ export default function Home() {
       alert("Failed to send message");
     }
   });
+
+  if (userLoading) return <div>Loading...</div>;
+  if (userError) return <div>Error...</div>;
+
+  console.log(user);
 
   return (
     <main className="container">
