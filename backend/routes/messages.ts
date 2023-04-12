@@ -25,9 +25,8 @@ export default router;
 router.get("/", async (req, res) => {
   try {
     const messages = await Message.find({});
-    res.status(200).json({ messages });
+    res.status(200).json(messages);
   } catch (error) {
-    console.error(error);
     res.status(500).json("Failed to get messages");
   }
 });

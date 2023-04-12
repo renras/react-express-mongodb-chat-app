@@ -8,9 +8,9 @@ type FormData = {
 };
 
 type Message = {
-  createdAt: number;
-  message: string;
-  sender: string;
+  createdAt: Date;
+  body: string;
+  from: string;
 };
 
 type User = {
@@ -20,11 +20,13 @@ type User = {
 
 export default function Home() {
   const { register, handleSubmit, reset } = useForm<FormData>();
-  const messages: Message[] = [];
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
-  const [userLoading, setUserLoading] = useState(false);
+  const [userLoading, setUserLoading] = useState(true);
   const [userError, setUserError] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [messagesLoading, setMessagesLoading] = useState(true);
+  const [messagesError, setMessagesError] = useState(false);
 
   // todo: fetch chat messages
 
@@ -47,6 +49,21 @@ export default function Home() {
     })();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get("/api/v1/messages");
+        const messages = response.data;
+
+        setMessages(messages);
+      } catch (error) {
+        setMessagesError(true);
+      } finally {
+        setMessagesLoading(false);
+      }
+    })();
+  }, []);
+
   const handleLogout = async () => {
     // todo: add signout logic here
   };
@@ -54,6 +71,14 @@ export default function Home() {
   const handleCreateMessage = handleSubmit(async (data) => {
     try {
       // todo: add create message logic here
+      const response = await axios.post("/api/v1/messages", {
+        body: data.message,
+        from: user?.email,
+      });
+
+      const message = response.data;
+
+      setMessages([...messages, message]);
 
       reset();
     } catch (error) {
@@ -62,10 +87,8 @@ export default function Home() {
     }
   });
 
-  if (userLoading) return <div>Loading...</div>;
-  if (userError) return <div>Error...</div>;
-
-  console.log(user);
+  if (userLoading || messagesLoading) return <div>Loading...</div>;
+  if (userError || messagesError) return <div>Error...</div>;
 
   return (
     <main className="container">
@@ -86,8 +109,8 @@ export default function Home() {
               key={index}
               className="d-inline-flex flex-column p-3 border shadow-sm"
             >
-              <p>Sender: {message.sender}</p>
-              <p>Message: {message.message}</p>
+              <p>Sender: {message.from}</p>
+              <p>Message: {message.body}</p>
             </div>
           ))}
       </div>
