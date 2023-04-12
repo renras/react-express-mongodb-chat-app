@@ -34,7 +34,7 @@ export default function Home() {
       >
         <form onSubmit={onSubmit}>
           <h1>Sign In</h1>
-          <label className="form-label mt-5" htmlFor="email">
+          <label className="form-label mt-4" htmlFor="email">
             Email
           </label>
           <input className="form-control" type="email" {...register("email")} />
@@ -49,12 +49,10 @@ export default function Home() {
 
           <div className="mt-4">
             <Link to="/sign-up">
-              <p>Already have an account? Sign up</p>
+              <p>Don't have an account? Sign up</p>
             </Link>
           </div>
-          <button className="btn btn-lg btn-primary mt-5 d-block w-100">
-            Sign In
-          </button>
+          <button className="btn btn-lg btn-primary mt-3 w-100">Sign In</button>
         </form>
       </div>
     </main>

@@ -28,27 +28,32 @@ const SignUp = () => {
 
   return (
     <main className="container">
-      <form onSubmit={onSubmit}>
-        <h1 className="mt-5">Sign Up</h1>
-        <label className="form-label mt-3" htmlFor="email">
-          Email
-        </label>
-        <input className="form-control" type="email" {...register("email")} />
-        <label className="form-label mt-3" htmlFor="password">
-          Password
-        </label>
-        <input
-          className="form-control"
-          type="password"
-          {...register("password")}
-        />
-        <div className="mt-3">
-          <Link to="/sign-in">
-            <p>Sign in instead</p>
-          </Link>
-        </div>
-        <button className="btn btn-primary mt-5">Sign Up</button>
-      </form>
+      <div
+        className="shadow-sm border p-5 rounded mx-auto"
+        style={{ maxWidth: "600px", marginTop: "100px" }}
+      >
+        <form onSubmit={onSubmit}>
+          <h1>Sign Up</h1>
+          <label className="form-label mt-4" htmlFor="email">
+            Email
+          </label>
+          <input className="form-control" type="email" {...register("email")} />
+          <label className="form-label mt-3" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="form-control"
+            type="password"
+            {...register("password")}
+          />
+          <div className="mt-4">
+            <Link to="/sign-in">
+              <p>Already have an account? Sign in</p>
+            </Link>
+          </div>
+          <button className="btn btn-lg btn-primary mt-3 w-100">Sign Up</button>
+        </form>
+      </div>
     </main>
   );
 };
