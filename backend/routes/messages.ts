@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
   const { from, body } = req.body;
 
   if (!from || !body) {
-    return res.status(400).json("a field is missing");
+    return res.status(400).json("A field is missing");
   }
 
   try {
@@ -21,3 +21,13 @@ router.post("/", async (req, res) => {
 });
 
 export default router;
+
+router.get("/", async (req, res) => {
+  try {
+    const messages = await Message.find({});
+    res.status(200).json({ messages });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json("Failed to get messages");
+  }
+});

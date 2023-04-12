@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-type IMessage = {
+export type IMessage = {
   from: string;
   body: string;
   createdAt: Date;
