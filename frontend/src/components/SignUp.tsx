@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 type FormData = {
   email: string;
@@ -9,6 +10,7 @@ type FormData = {
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm<FormData>();
+  const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (data) => {
     const { email, password } = data;
@@ -18,7 +20,7 @@ const SignUp = () => {
         password,
       });
 
-      alert("sign up successful");
+      navigate("/sign-in");
     } catch {
       alert("Sign up failed");
     }
