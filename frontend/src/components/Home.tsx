@@ -104,12 +104,13 @@ export default function Home() {
         </button>
       </div>
 
-      <div className="mt-5 d-flex flex-column gap-3">
+      {/* messages container */}
+      <div className="mt-5 d-flex flex-column gap-3 px-4 py-5 shadow-sm border">
         {lastFiveMessages.length > 0 &&
           lastFiveMessages.map((message, index) => (
             <div
               key={index}
-              className="d-inline-flex flex-column p-3 border shadow-sm"
+              className="d-inline-flex flex-column p-3 border rounded"
             >
               <p>Sender: {message.from}</p>
               <p>Message: {message.body}</p>

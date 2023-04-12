@@ -52,7 +52,7 @@ export default function Home() {
               <p>Don't have an account? Sign up</p>
             </Link>
           </div>
-          <button className="btn btn-lg btn-primary mt-3 w-100">Sign In</button>
+          <button className="btn btn-lg btn-primary mt-4 w-100">Sign In</button>
         </form>
       </div>
     </main>
