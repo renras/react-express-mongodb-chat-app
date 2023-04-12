@@ -90,6 +90,8 @@ export default function Home() {
   if (userLoading || messagesLoading) return <div>Loading...</div>;
   if (userError || messagesError) return <div>Error...</div>;
 
+  const lastFiveMessages = messages.slice(-4);
+
   return (
     <main className="container">
       <div className="d-flex gap-4 align-items-center mt-5">
@@ -103,8 +105,8 @@ export default function Home() {
       </div>
 
       <div className="mt-5 d-flex flex-column gap-3">
-        {messages.length > 0 &&
-          messages.map((message, index) => (
+        {lastFiveMessages.length > 0 &&
+          lastFiveMessages.map((message, index) => (
             <div
               key={index}
               className="d-inline-flex flex-column p-3 border shadow-sm"
