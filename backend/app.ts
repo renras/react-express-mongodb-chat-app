@@ -6,6 +6,7 @@ import User from "./models/User";
 import mongoose from "mongoose";
 import session from "express-session";
 import usersRouter from "./routes/users";
+import messagesRouter from "./routes/messages";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", usersRouter);
+app.use("/api/v1/messages", messagesRouter);
 
 mongoose
   .connect(process.env.MONGO_URL as string)
